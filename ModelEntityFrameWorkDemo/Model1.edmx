@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="AuthorSet" EntityType="Model1.Store.AuthorSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookSet" EntityType="Model1.Store.BookSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VisitorSet" EntityType="Model1.Store.VisitorSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CartSet" EntityType="Model1.Store.CartSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AuthorBook" EntityType="Model1.Store.AuthorBook" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_AuthorBook_Author" Association="Model1.Store.FK_AuthorBook_Author">
+      <End Role="Author" EntitySet="AuthorSet" />
+      <End Role="AuthorBook" EntitySet="AuthorBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AuthorBook_Book" Association="Model1.Store.FK_AuthorBook_Book">
+      <End Role="Book" EntitySet="BookSet" />
+      <End Role="AuthorBook" EntitySet="AuthorBook" />
+    </AssociationSet>
+    <AssociationSet Name="VisitorCart" Association="Model1.Store.VisitorCart">
+      <End Role="Visitor" EntitySet="VisitorSet" />
+      <End Role="Cart" EntitySet="CartSet" />
+    </AssociationSet>
+    <AssociationSet Name="BookCart" Association="Model1.Store.BookCart">
+      <End Role="Book" EntitySet="BookSet" />
+      <End Role="Cart" EntitySet="CartSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AuthorSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BookSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Pages" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VisitorSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CartSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="isHand" Type="smallint" Nullable="false" />
+    <Property Name="dateOf" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VisitorId" Type="int" Nullable="false" />
+    <Property Name="BookId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AuthorBook">
+    <Key>
+      <PropertyRef Name="Author_Id" />
+      <PropertyRef Name="Book_Id" />
+    </Key>
+    <Property Name="Author_Id" Type="int" Nullable="false" />
+    <Property Name="Book_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="VisitorCart">
+    <End Role="Visitor" Type="Model1.Store.VisitorSet" Multiplicity="1" />
+    <End Role="Cart" Type="Model1.Store.CartSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visitor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="VisitorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookCart">
+    <End Role="Book" Type="Model1.Store.BookSet" Multiplicity="1" />
+    <End Role="Cart" Type="Model1.Store.CartSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AuthorBook_Author">
+    <End Role="Author" Type="Model1.Store.AuthorSet" Multiplicity="1" />
+    <End Role="AuthorBook" Type="Model1.Store.AuthorBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AuthorBook">
+        <PropertyRef Name="Author_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AuthorBook_Book">
+    <End Role="AuthorBook" Type="Model1.Store.AuthorBook" Multiplicity="*" />
+    <End Role="Book" Type="Model1.Store.BookSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AuthorBook">
+        <PropertyRef Name="Book_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="LibraryContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuthorSet" EntityType="Model1.Author" />
+          <EntitySet Name="BookSet" EntityType="Model1.Book" />
+          <EntitySet Name="VisitorSet" EntityType="Model1.Visitor" />
+          <EntitySet Name="CartSet" EntityType="Model1.Cart" />
+          <AssociationSet Name="AuthorBook" Association="Model1.AuthorBook">
+            <End Role="Author" EntitySet="AuthorSet" />
+            <End Role="Book" EntitySet="BookSet" />
+          </AssociationSet>
+          <AssociationSet Name="VisitorCart" Association="Model1.VisitorCart">
+            <End Role="Visitor" EntitySet="VisitorSet" />
+            <End Role="Cart" EntitySet="CartSet" />
+          </AssociationSet>
+          <AssociationSet Name="BookCart" Association="Model1.BookCart">
+            <End Role="Book" EntitySet="BookSet" />
+            <End Role="Cart" EntitySet="CartSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Book" Relationship="Model1.AuthorBook" FromRole="Author" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Pages" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="Model1.AuthorBook" FromRole="Book" ToRole="Author" />
+          <NavigationProperty Name="Cart" Relationship="Model1.BookCart" FromRole="Book" ToRole="Cart" />
+        </EntityType>
+        <EntityType Name="Visitor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Cart" Relationship="Model1.VisitorCart" FromRole="Visitor" ToRole="Cart" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isHand" Type="Int16" Nullable="false" />
+          <Property Name="dateOf" Type="String" Nullable="false" />
+          <NavigationProperty Name="Visitor" Relationship="Model1.VisitorCart" FromRole="Cart" ToRole="Visitor" />
+          <Property Name="VisitorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Model1.BookCart" FromRole="Cart" ToRole="Book" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="AuthorBook">
+          <End Type="Model1.Author" Role="Author" Multiplicity="*" />
+          <End Type="Model1.Book" Role="Book" Multiplicity="*" />
+        </Association>
+        <Association Name="VisitorCart">
+          <End Type="Model1.Visitor" Role="Visitor" Multiplicity="1" />
+          <End Type="Model1.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visitor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="VisitorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BookCart">
+          <End Type="Model1.Book" Role="Book" Multiplicity="1" />
+          <End Type="Model1.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="LibraryContext">
+    <EntitySetMapping Name="AuthorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Author)">
+        <MappingFragment StoreEntitySet="AuthorSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Book)">
+        <MappingFragment StoreEntitySet="BookSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Pages" ColumnName="Pages" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Visitor)">
+        <MappingFragment StoreEntitySet="VisitorSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CartSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Cart)">
+        <MappingFragment StoreEntitySet="CartSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="isHand" ColumnName="isHand" />
+          <ScalarProperty Name="dateOf" ColumnName="dateOf" />
+          <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
+          <ScalarProperty Name="BookId" ColumnName="BookId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AuthorBook" TypeName="Model1.AuthorBook" StoreEntitySet="AuthorBook">
+      <EndProperty Name="Author">
+        <ScalarProperty Name="Id" ColumnName="Author_Id" />
+      </EndProperty>
+      <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="Book_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

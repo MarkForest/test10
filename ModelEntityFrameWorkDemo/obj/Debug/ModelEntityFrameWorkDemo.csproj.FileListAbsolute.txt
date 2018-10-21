@@ -1,0 +1,10 @@
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\bin\Debug\ModelEntityFrameWorkDemo.exe.config
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\bin\Debug\ModelEntityFrameWorkDemo.exe
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\bin\Debug\ModelEntityFrameWorkDemo.pdb
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\bin\Debug\EntityFramework.dll
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\bin\Debug\EntityFramework.xml
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\obj\Debug\ModelEntityFrameWorkDemo.csprojResolveAssemblyReference.cache
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\obj\Debug\ModelEntityFrameWorkDemo.exe
+c:\users\teather\documents\visual studio 2017\Projects\ModelEntityFrameWorkDemo\ModelEntityFrameWorkDemo\obj\Debug\ModelEntityFrameWorkDemo.pdb
